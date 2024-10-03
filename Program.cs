@@ -31,28 +31,37 @@ public class Program
                     Commands.ShowNetworks(networks);
                     break;
                 case "train":
-                    nullableNetwork = GetNetwork(networks, networkNames, "Enter a network to train: ", "Network wasn't in the saved networks list\nEnter again: ");
+                    nullableNetwork = GetNetwork(networks, networkNames, "Enter a network to train: ");
                     if(nullableNetwork == null) continue;
                     network = nullableNetwork;
                     Commands.Train(network, labelsFilePath, imagesFilePath);
                     break;
                 case "test":
-                    Commands.Test(networks, networkNames, labelsFilePath, imagesFilePath);
+                    nullableNetwork = GetNetwork(networks, networkNames, "Enter a network to test: ");
+                    if(nullableNetwork == null) continue;
+                    network = nullableNetwork;
+                    Commands.Test(network, labelsFilePath, imagesFilePath);
                     break;
                 case "error":
-                    nullableNetwork = GetNetwork(networks, networkNames, "Enter a network to get the error of: ", "Network wasn't in the saved networks list\nEnter again: ");
+                    nullableNetwork = GetNetwork(networks, networkNames, "Enter a network to get the error of: ");
                     if(nullableNetwork == null) continue;
                     network = nullableNetwork;
                     Commands.PrintError(network, labelsFilePath, imagesFilePath);
                     break;
                 case "store":
-                    Commands.Store(networks, networkNames, filePathToStoreIn);
+                    nullableNetwork = GetNetwork(networks, networkNames, "Enter a network to store: ");
+                    if(nullableNetwork == null) continue;
+                    network = nullableNetwork;
+                    Commands.Store(network, filePathToStoreIn);
                     break;
                 case "make":
                     Commands.Make(networks, networkNames);
                     break;
                 case "delete":
-                    Commands.Delete(networks, networkNames);
+                    nullableNetwork = GetNetwork(networks, networkNames, "Enter a network you want to delete: ");
+                    if(nullableNetwork == null) continue;
+                    network = nullableNetwork;
+                    Commands.Delete(networks, networkNames, network);
                     break;
                 case "clear":
                     Console.Clear();
@@ -64,7 +73,7 @@ public class Program
         }
     }
 
-    public static NeuralNetwork? GetNetwork(List<NeuralNetwork> networks, List<string> networkNames, string startingMessage, string problemMessage)
+    public static NeuralNetwork? GetNetwork(List<NeuralNetwork> networks, List<string> networkNames, string startingMessage)
     {
         if(networks.Count == 0)
         {
@@ -73,7 +82,7 @@ public class Program
         }
 
         //Get the name of the network
-        string name = Prompts.PromptUntilConditionMet(startingMessage, problemMessage, Checks.NetworkListContainsName, "", networkNames);
+        string name = Prompts.PromptUntilConditionMet(startingMessage, "Network wasn't in the saved networks list\nEnter again: ", Checks.NetworkListContainsName, "", networkNames);
         if(name == "exit") return null;
 
         //Find the network in the list and return it
