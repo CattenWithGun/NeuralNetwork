@@ -1,0 +1,17 @@
+/home/catten/Desktop/NeuralNetwork/bin/Debug/net8.0/NeuralNetwork
+/home/catten/Desktop/NeuralNetwork/bin/Debug/net8.0/NeuralNetwork.deps.json
+/home/catten/Desktop/NeuralNetwork/bin/Debug/net8.0/NeuralNetwork.runtimeconfig.json
+/home/catten/Desktop/NeuralNetwork/bin/Debug/net8.0/NeuralNetwork.dll
+/home/catten/Desktop/NeuralNetwork/bin/Debug/net8.0/NeuralNetwork.pdb
+/home/catten/Desktop/NeuralNetwork/bin/Debug/net8.0/Newtonsoft.Json.dll
+/home/catten/Desktop/NeuralNetwork/obj/Debug/net8.0/NeuralNetwork.csproj.AssemblyReference.cache
+/home/catten/Desktop/NeuralNetwork/obj/Debug/net8.0/NeuralNetwork.GeneratedMSBuildEditorConfig.editorconfig
+/home/catten/Desktop/NeuralNetwork/obj/Debug/net8.0/NeuralNetwork.AssemblyInfoInputs.cache
+/home/catten/Desktop/NeuralNetwork/obj/Debug/net8.0/NeuralNetwork.AssemblyInfo.cs
+/home/catten/Desktop/NeuralNetwork/obj/Debug/net8.0/NeuralNetwork.csproj.CoreCompileInputs.cache
+/home/catten/Desktop/NeuralNetwork/obj/Debug/net8.0/NeuralNetwork.csproj.CopyComplete
+/home/catten/Desktop/NeuralNetwork/obj/Debug/net8.0/NeuralNetwork.dll
+/home/catten/Desktop/NeuralNetwork/obj/Debug/net8.0/refint/NeuralNetwork.dll
+/home/catten/Desktop/NeuralNetwork/obj/Debug/net8.0/NeuralNetwork.pdb
+/home/catten/Desktop/NeuralNetwork/obj/Debug/net8.0/NeuralNetwork.genruntimeconfig.cache
+/home/catten/Desktop/NeuralNetwork/obj/Debug/net8.0/ref/NeuralNetwork.dll
