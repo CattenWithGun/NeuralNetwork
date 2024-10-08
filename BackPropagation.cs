@@ -35,6 +35,21 @@ namespace BackPropagationHelper
             return inputsOfLayerWithRespectToWeights;
         }
 
+        public static double[] ErrorWithLayer(double[] leftLayer, double[,] leftLayerWeights, double[] rightLayer, double[] errorWithRightLayer, double[] rightLayerWithTanh)
+        {
+            double[] errorWithLayer = new double[leftLayer.Length];
+            for(int leftLayerIndex = 0; leftLayerIndex < leftLayer.Length; leftLayerIndex++)
+            {
+                double error = 0;
+                for(int connectionIndex = 0; connectionIndex < rightLayer.Length; connectionIndex++)
+                {
+                    error += errorWithRightLayer[connectionIndex] * rightLayerWithTanh[connectionIndex] * leftLayerWeights[connectionIndex, leftLayerIndex];
+                }
+                errorWithLayer[leftLayerIndex] = error;
+            }
+            return errorWithLayer;
+        }
+
         //Left layer could be replaced by a GetLength() of leftLayerWeights later, but that is confusing to me right now
         public static double[,] NewLayerWeights(double[] leftLayer, double[,] leftLayerWeights, double[] rightLayer, double learningRate, double[] errorWithRespectToRightLayer, double[] rightLayerWithRespectToTanh, double[,] inputsOfRightLayerWithRespectToWeights)
         {
@@ -57,21 +72,6 @@ namespace BackPropagationHelper
                 newLeftLayerBiases[i] -= learningRate * errorWithRespectToRightLayer[i] * rightLayerWithRespectToTanh[i];
             }
             return newLeftLayerBiases;
-        }
-
-        public static double[] ErrorWithLayer(double[] leftLayer, double[,] leftLayerWeights, double[] rightLayer, double[] errorWithRightLayer, double[] rightLayerWithTanh)
-        {
-            double[] errorWithLayer = new double[leftLayer.Length];
-            for(int leftLayerIndex = 0; leftLayerIndex < leftLayer.Length; leftLayerIndex++)
-            {
-                double error = 0;
-                for(int connectionIndex = 0; connectionIndex < rightLayer.Length; connectionIndex++)
-                {
-                    error += errorWithRightLayer[connectionIndex] * rightLayerWithTanh[connectionIndex] * leftLayerWeights[connectionIndex, leftLayerIndex];
-                }
-                errorWithLayer[leftLayerIndex] = error;
-            }
-            return errorWithLayer;
         }
     }
 }
