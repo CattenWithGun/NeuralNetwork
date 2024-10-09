@@ -169,7 +169,7 @@ namespace NeuralNetworking
         }
 
         //Calculates the SSE (Sum of Squared Errors)
-        //Multiplying by 0.5 for derivational purposes? Might change later because its not hard to do the math
+        //Multiplying by 0.5 for derivational purposes? Might change later because its not hard to do the math.
         public double Error(NeuralNetwork network, byte[] inputLayerBytes, byte expectedValueByte)
         {
             NeuralNetwork networkToGetErrorOf = network.FeedForward(network, inputLayerBytes);
