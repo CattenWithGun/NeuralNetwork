@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NeuralNetwork")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+024a5a051f67ce6edffc0950199fb2cc2ea4e1af")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+222dab75c69604941b96f014e977603cd09546ea")]
 [assembly: System.Reflection.AssemblyProductAttribute("NeuralNetwork")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NeuralNetwork")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

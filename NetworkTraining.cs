@@ -1,6 +1,7 @@
 using ArrayCopying;
 using MNIST;
 using NeuralNetworking;
+using Debugging;
 using System.Diagnostics;
 
 namespace NetworkTraining
