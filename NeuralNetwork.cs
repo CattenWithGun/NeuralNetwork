@@ -1,4 +1,3 @@
-using ArrayCopying;
 using BackPropagationHelper;
 using Debugging;
 using Newtonsoft.Json;
@@ -27,19 +26,19 @@ namespace NeuralNetworking
 
         //Creates neural network with saved data
         [JsonConstructor]
-        public NeuralNetwork(double[] argumentInputLayer, double[] argumentHiddenLayer1, double[] argumentHiddenLayer2, double[] argumentOutputLayer, double[,] argumentInputLayerWeights, double[,] argumentHiddenLayer1Weights, double[,] argumentHiddenLayer2Weights, double[] argumentInputLayerBiases, double[] argumentHiddenLayer1Biases, double[] argumentHiddenLayer2Biases, string argumentName)
+        public NeuralNetwork(double[] inputLayer, double[] hiddenLayer1, double[] hiddenLayer2, double[] outputLayer, double[,] inputLayerWeights, double[,] hiddenLayer1Weights, double[,] hiddenLayer2Weights, double[] inputLayerBiases, double[] hiddenLayer1Biases, double[] hiddenLayer2Biases, string name)
         {
-            inputLayer = argumentInputLayer;
-            hiddenLayer1 = argumentHiddenLayer1;
-            hiddenLayer2 = argumentHiddenLayer2;
-            outputLayer = argumentOutputLayer;
-            inputLayerWeights = argumentInputLayerWeights;
-            hiddenLayer1Weights = argumentHiddenLayer1Weights;
-            hiddenLayer2Weights = argumentHiddenLayer2Weights;
-            inputLayerBiases = argumentInputLayerBiases;
-            hiddenLayer1Biases = argumentHiddenLayer1Biases;
-            hiddenLayer2Biases = argumentHiddenLayer2Biases;
-            name = argumentName;
+            this.inputLayer = inputLayer;
+            this.hiddenLayer1 = hiddenLayer1;
+            this.hiddenLayer2 = hiddenLayer2;
+            this.outputLayer = outputLayer;
+            this.inputLayerWeights = inputLayerWeights;
+            this.hiddenLayer1Weights = hiddenLayer1Weights;
+            this.hiddenLayer2Weights = hiddenLayer2Weights;
+            this.inputLayerBiases = inputLayerBiases;
+            this.hiddenLayer1Biases = hiddenLayer1Biases;
+            this.hiddenLayer2Biases = hiddenLayer2Biases;
+            this.name = name;
         }
 
         //If no neuron information about the network is given, generate random weights and biases

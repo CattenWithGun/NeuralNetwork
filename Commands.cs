@@ -174,6 +174,12 @@ namespace Actions
             Console.WriteLine($"\nDeleted {network.name}");
         }
 
+        public static void Peek(NeuralNetwork network)
+        {
+            Console.WriteLine("outputLayer: ");
+            DebugTools.ShowDoubles(network.outputLayer);
+        }
+
         public static void ShowCommands()
         {
             Console.WriteLine("Type commands to do stuff:");
@@ -184,6 +190,7 @@ namespace Actions
             Console.WriteLine("Store neural network:             store");
             Console.WriteLine("Make new neural network:          make");
             Console.WriteLine("Delete neural network:            delete");
+            Console.WriteLine("Peek inside network:              peek");
             Console.WriteLine("Exits out of a prompt:            exit");
             Console.WriteLine("Clear the screen:                 clear");
             Console.WriteLine("Show this dialogue again:         help");

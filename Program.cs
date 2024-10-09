@@ -63,6 +63,12 @@ public class Program
                     network = nullableNetwork;
                     Commands.Delete(networks, networkNames, network);
                     break;
+                case "peek":
+                    nullableNetwork = GetNetwork(networks, networkNames, "Enter a network you want to peek into: ");
+                    if(nullableNetwork == null) continue;
+                    network = nullableNetwork;
+                    Commands.Peek(network);
+                    break;
                 case "clear":
                     Console.Clear();
                     break;
