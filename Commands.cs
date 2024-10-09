@@ -61,7 +61,8 @@ namespace Actions
             for(int i = 0; i < labels.Length; i++)
             {
                 byte[] imageBytes = MNISTFileHandler.ImageToByteArray(images, i);
-                errors[i] = network.Error(network, imageBytes, labels[i]);
+                network = network.FeedForward(network, imageBytes);
+                errors[i] = network.Error(network.outputLayer, labels[i]);
             }
 
             double averageError = 0;
