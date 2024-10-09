@@ -210,10 +210,10 @@ namespace NeuralNetworking
             //Returns the network with all it's new values
             return new NeuralNetwork
             (
-                ArrayUtils.Clone(network.inputLayer),
-                ArrayUtils.Clone(network.hiddenLayer1),
-                ArrayUtils.Clone(network.hiddenLayer2),
-                ArrayUtils.Clone(network.outputLayer),
+                network.inputLayer,
+                network.hiddenLayer1,
+                network.hiddenLayer2,
+                network.outputLayer,
                 newInputLayerWeights,
                 newHiddenLayer1Weights,
                 newHiddenLayer2Weights,
