@@ -169,17 +169,15 @@ namespace NeuralNetworking
         }
 
         //Calculates the SSE (Sum of Squared Errors)
-        //Multiplying by 0.5
+        //Multiplying by 0.5 for derivational purposes? Might change later, because its not hard to do that math
         public double Error(NeuralNetwork network, byte[] inputLayerBytes, byte expectedValueByte)
         {
             NeuralNetwork networkToGetErrorOf = network.FeedForward(network, inputLayerBytes);
-            double[] errors = new double[networkToGetErrorOf.outputLayer.Length];
             double error = 0;
-            for(int i = 0; i < errors.Length; i++)
+            for(int i = 0; i < networkToGetErrorOf.outputLayer.Length; i++)
             {
                 int expectedValue = Convert.ToInt32(i == Convert.ToInt32(expectedValueByte));
-                errors[i] = 0.5 * Math.Pow(expectedValue - outputLayer[i], 2);
-                error += errors[i];
+                error += 0.5 * Math.Pow(expectedValue - outputLayer[i], 2);
             }
             return error;
         }
