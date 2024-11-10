@@ -11,6 +11,9 @@ internal class Program
         string imagesFilePath = "/home/catten/Desktop/MNIST_Train_Database/train-images.idx3-ubyte";
         string filePathToStoreIn = "/home/catten/Desktop/network.txt";
 
+        byte[] labels = MNISTFileHandler.GetLabels(labelsFilePath);
+        byte[,,] images = MNISTFileHandler.GetImages(imagesFilePath);
+
         NeuralNetwork? nullableNetwork;
         NeuralNetwork network;
 
@@ -28,19 +31,19 @@ internal class Program
                     nullableNetwork = GetNetwork(networks, networkNames, "Enter a network to train: ");
                     if(nullableNetwork == null) continue;
                     network = nullableNetwork;
-                    Commands.Train(network, labelsFilePath, imagesFilePath);
+                    Commands.Train(network, labels, images);
                     break;
                 case "test":
                     nullableNetwork = GetNetwork(networks, networkNames, "Enter a network to test: ");
                     if(nullableNetwork == null) continue;
                     network = nullableNetwork;
-                    Commands.Test(network, labelsFilePath, imagesFilePath);
+                    Commands.Test(network, labels, images);
                     break;
                 case "error":
                     nullableNetwork = GetNetwork(networks, networkNames, "Enter a network to get the error of: ");
                     if(nullableNetwork == null) continue;
                     network = nullableNetwork;
-                    Commands.PrintError(network, labelsFilePath, imagesFilePath);
+                    Commands.PrintError(network, labels, images);
                     break;
                 case "store":
                     nullableNetwork = GetNetwork(networks, networkNames, "Enter a network to store: ");

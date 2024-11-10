@@ -16,21 +16,18 @@ internal static class Commands
         }
     }
 
-    public static void Train(NeuralNetwork network, string labelsFilePath, string imagesFilePath)
+    public static void Train(NeuralNetwork network, byte[] labels, byte[,,] images)
     {
         string learningRateString = Prompts.SamePromptUntilConditionMet("Enter the learning rate: ", Checks.IsDouble, "");
         if(learningRateString == "exit") return;
         double learningRate = Convert.ToDouble(learningRateString);
-
-        network = Training.TrainNetwork(network, learningRate, labelsFilePath, imagesFilePath);
+        network = Training.TrainNetwork(network, learningRate, labels, images);
     }
 
-    public static void Test(NeuralNetwork network, string labelsFilePath, string imagesFilePath)
+    public static void Test(NeuralNetwork network, byte[] labels, byte[,,] images)
     {
         string exit = "";
         Random random = new Random();
-        byte[] labels = MNISTFileHandler.GetLabels(labelsFilePath);
-        byte[,,] images = MNISTFileHandler.GetImages(imagesFilePath);
         while(exit != "exit")
         {
             int imageIndex = random.Next(0, labels.Length);
@@ -43,11 +40,9 @@ internal static class Commands
         }
     }
 
-    public static void PrintError(NeuralNetwork network, string labelsFilePath, string imagesFilePath)
+    public static void PrintError(NeuralNetwork network, byte[] labels, byte[,,] images)
     {
         //Finds the average error of the network
-        byte[] labels = MNISTFileHandler.GetLabels(labelsFilePath);
-        byte[,,] images = MNISTFileHandler.GetImages(imagesFilePath);
         double[] errors = new double[labels.Length];
         for(int i = 0; i < labels.Length; i++)
         {

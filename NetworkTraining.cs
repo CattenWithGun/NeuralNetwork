@@ -2,12 +2,11 @@ using System.Diagnostics;
 
 internal static class Training
 {
-    public static NeuralNetwork TrainNetwork(NeuralNetwork network, double learningRate, string labelsFilePath, string imagesFilePath)
+    public static NeuralNetwork TrainNetwork(NeuralNetwork network, double learningRate, byte[] labels, byte[,,] images)
     {
         Console.WriteLine("Training network...");
 
-        byte[] labels = MNISTFileHandler.GetLabels(labelsFilePath);
-        byte[,,] images = MNISTFileHandler.GetImages(imagesFilePath);
+        //This is very subject to change, I have no clue what is optimal
         int batchSize = 10000;
 
         Random random = new Random();
