@@ -26,17 +26,33 @@ internal static class Commands
 
     public static void Test(NeuralNetwork network, byte[] labels, byte[,,] images)
     {
-        string exit = "";
+        string answer = "";
         Random random = new Random();
-        while(exit != "exit")
+        while(answer != "exit")
         {
-            int imageIndex = random.Next(0, labels.Length);
-            MNISTFileHandler.WriteImage(imageIndex, images);
-            Console.WriteLine($"Expected: {labels[imageIndex]}");
-            Console.WriteLine($"{network.name}'s guess: {network.FeedForwardAndGetGuess(network, MNISTFileHandler.ImageToByteArray(images, imageIndex))}");
+            if(answer == "r")
+            {
+                byte[,] image = MNISTFileHandler.RandomizedImage();
+                byte[] imageBytes = MNISTFileHandler.ImageToByteArray(image);
+                byte guess = network.FeedForwardAndGetGuess(network, imageBytes);
+
+                MNISTFileHandler.WriteImage(image);
+                Console.WriteLine($"{network.name}'s guess: {guess}");
+            }
+            else
+            {
+                int imageIndex = random.Next(0, labels.Length);
+                byte[,] image = MNISTFileHandler.GetImage(images, imageIndex);
+                byte[] imageBytes = MNISTFileHandler.ImageToByteArray(image);
+                byte guess = network.FeedForwardAndGetGuess(network, imageBytes);
+
+                Console.WriteLine($"Expected: {labels[imageIndex]}");
+                MNISTFileHandler.WriteImage(image);
+                Console.WriteLine($"{network.name}'s guess: {guess}");
+            }
             Console.WriteLine("outputLayer:");
             DebugTools.ShowDoubles(network.outputLayer);
-            exit = Console.ReadLine() ?? "exit";
+            answer = Console.ReadLine() ?? "exit";
         }
     }
 
@@ -46,7 +62,8 @@ internal static class Commands
         double[] errors = new double[labels.Length];
         for(int i = 0; i < labels.Length; i++)
         {
-            byte[] imageBytes = MNISTFileHandler.ImageToByteArray(images, i);
+            byte[,] image = MNISTFileHandler.GetImage(images, i);
+            byte[] imageBytes = MNISTFileHandler.ImageToByteArray(image);
             errors[i] = network.Error(network, imageBytes, labels[i]);
         }
 
@@ -61,7 +78,9 @@ internal static class Commands
         double correctGuesses = 0;
         for(int i = 0; i < labels.Length; i++)
         {
-            if(network.FeedForwardAndGetGuess(network, MNISTFileHandler.ImageToByteArray(images, i)) == labels[i])
+            byte[,] image = MNISTFileHandler.GetImage(images, i);
+            byte[] imageBytes = MNISTFileHandler.ImageToByteArray(image);
+            if(network.FeedForwardAndGetGuess(network, imageBytes) == labels[i])
             {
                 correctGuesses++;
             }

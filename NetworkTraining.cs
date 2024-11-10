@@ -29,7 +29,6 @@ internal static class Training
 
         for(int batchIndex = 0; batchIndex < batchSize; batchIndex++)
         {
-            //Gets the new weights and biases, using the backpropagation function
             int trainingDataIndex;
             //This do while makes sure that the batches always have equal amounts of data of all types
             do
@@ -37,7 +36,9 @@ internal static class Training
                 trainingDataIndex = random.Next(0, labels.Length);
             }
             while(labels[trainingDataIndex] != batchIndex % 10);
-            network = network.FeedForward(network, MNISTFileHandler.ImageToByteArray(images, trainingDataIndex));
+            byte[,] image = MNISTFileHandler.GetImage(images, trainingDataIndex);
+            byte[] imageBytes = MNISTFileHandler.ImageToByteArray(image);
+            network = network.FeedForward(network, imageBytes);
             network = network.BackPropagate(network, MNISTFileHandler.LabelToExpectedValues(labels[trainingDataIndex]), learningRate);
 
             newHiddenLayer2Weights[batchIndex] = ArrayUtils.Clone(network.hiddenLayer2Weights);

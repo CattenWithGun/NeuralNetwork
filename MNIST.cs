@@ -58,22 +58,17 @@ internal static class MNISTFileHandler
         return images;
     }
 
-    public static void WriteImage(int index, byte[,,] images)
+    public static void WriteImage(byte[,] image)
     {
-        string[] rows = new string[28];
-        string placeholder = "";
-        for(int heightIndex = 0; heightIndex < 28; heightIndex++)
+        string row = "";
+        for(int heightIndex = 0; heightIndex < image.GetLength(0); heightIndex++)
         {
-            for(int widthIndex = 0; widthIndex < 28; widthIndex++)
+            for(int widthIndex = 0; widthIndex < image.GetLength(1); widthIndex++)
             {
-                placeholder += ConvertToPixel(Convert.ToString(images[index, heightIndex, widthIndex]));
+                row += ConvertToPixel(Convert.ToString(image[heightIndex, widthIndex]));
             }
-            rows[heightIndex] = placeholder;
-            placeholder = "";
-        }
-        for(int i = 0; i < 28; i++)
-        {
-            Console.WriteLine(rows[i]);
+            Console.WriteLine(row);
+            row = "";
         }
     }
 
@@ -110,14 +105,16 @@ internal static class MNISTFileHandler
         return finalArray;
     }
 
-    public static byte[] ImageToByteArray(byte[,,] images, int index)
+    public static byte[] ImageToByteArray(byte[,] image)
     {
-        byte[] finalArray = new byte[784];
-        for(int heightIndex = 0; heightIndex < 28; heightIndex++)
+        int imageHeight = image.GetLength(0);
+        int imageWidth = image.GetLength(1);
+        byte[] finalArray = new byte[imageWidth * imageHeight];
+        for(int heightIndex = 0; heightIndex < imageHeight; heightIndex++)
         {
-            for(int widthIndex = 0; widthIndex < 28; widthIndex++)
+            for(int widthIndex = 0; widthIndex < imageWidth; widthIndex++)
             {
-                finalArray[heightIndex * 28 + widthIndex] = images[index, heightIndex, widthIndex];
+                finalArray[heightIndex * imageWidth + widthIndex] = image[heightIndex, widthIndex];
             }
         }
         return finalArray;
@@ -202,6 +199,21 @@ internal static class MNISTFileHandler
         return result;
     }
 
+    public static byte[,] GetImage(byte[,,] images, int imageIndex)
+    {
+        int imageWidth = images.GetLength(2);
+        int imageHeight = images.GetLength(1);
+        byte[,] image = new byte[imageHeight, imageWidth];
+        for(int heightIndex = 0; heightIndex < imageHeight; heightIndex++)
+        {
+            for(int widthIndex = 0; widthIndex < imageWidth; widthIndex++)
+            {
+                image[heightIndex, widthIndex] = images[imageIndex, heightIndex, widthIndex];
+            }
+        }
+        return image;
+    }
+
     public static double[] LabelToExpectedValues(byte label)
     {
         double[,] expectedValues =
@@ -218,5 +230,19 @@ internal static class MNISTFileHandler
             {0,0,0,0,0,0,0,0,0,1},
         };
         return GetRow<double>(expectedValues, Convert.ToInt32(label));
+    }
+
+    public static byte[,] RandomizedImage()
+    {
+        byte[,] image = new byte[28, 28];
+        Random random = new Random();
+        for(int heightIndex = 0; heightIndex < image.GetLength(0); heightIndex++)
+        {
+            for(int widthIndex = 0; widthIndex < image.GetLength(1); widthIndex++)
+            {
+               image[heightIndex, widthIndex] = Convert.ToByte(random.Next(0, 256));
+            }
+        }
+        return image;
     }
 }
