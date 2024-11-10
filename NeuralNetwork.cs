@@ -4,18 +4,15 @@ internal class NeuralNetwork
 {
     public string name;
 
-    //Layers
     public double[] inputLayer;
     public double[] hiddenLayer1;
     public double[] hiddenLayer2;
     public double[] outputLayer;
 
-    //Weights
     public double[,] inputLayerWeights;
     public double[,] hiddenLayer1Weights;
     public double[,] hiddenLayer2Weights;
 
-    //Biases
     public double[] inputLayerBiases;
     public double[] hiddenLayer1Biases;
     public double[] hiddenLayer2Biases;
@@ -37,7 +34,7 @@ internal class NeuralNetwork
         this.name = name;
     }
 
-    //If no neuron information about the network is given, generate random weights and biases
+    //If save data is given, generate random data
     public NeuralNetwork(string argumentName)
     {
         inputLayer = new double[784];
@@ -145,7 +142,6 @@ internal class NeuralNetwork
         return newRightLayer;
     }
 
-    //Turns the inputLayerBytes into doubles and normalizes them
     private static double[] NormalizeInputs(byte[] inputLayerBytes)
     {
         double[] inputLayer = new double[inputLayerBytes.Length];
@@ -156,7 +152,6 @@ internal class NeuralNetwork
         return inputLayer;
     }
 
-    //Returns what the network thinks the image is, instead of the outputLayer
     public byte FeedForwardAndGetGuess(NeuralNetwork network, byte[] inputLayerBytes)
     {
         double[] outputLayer = network.FeedForward(network, inputLayerBytes).outputLayer;

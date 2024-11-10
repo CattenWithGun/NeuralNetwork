@@ -14,7 +14,6 @@ internal static class Training
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
 
-        //Old weights and biases
         double[,] oldHiddenLayer2Weights = ArrayUtils.Clone(network.hiddenLayer2Weights);
         double[,] oldHiddenLayer1Weights = ArrayUtils.Clone(network.hiddenLayer1Weights);
         double[,] oldInputLayerWeights = ArrayUtils.Clone(network.inputLayerWeights);
@@ -22,7 +21,6 @@ internal static class Training
         double[] oldHiddenLayer1Biases = ArrayUtils.Clone(network.hiddenLayer1Biases);
         double[] oldInputLayerBiases = ArrayUtils.Clone(network.inputLayerBiases);
 
-        //New weights and biases
         double[][,] newHiddenLayer2Weights = new double[batchSize][,];
         double[][,] newHiddenLayer1Weights = new double[batchSize][,];
         double[][,] newInputLayerWeights = new double[batchSize][,];
@@ -43,7 +41,6 @@ internal static class Training
             network = network.FeedForward(network, MNISTFileHandler.ImageToByteArray(images, trainingDataIndex));
             network = network.BackPropagate(network, MNISTFileHandler.LabelToExpectedValues(labels[trainingDataIndex]), learningRate);
 
-            //Stores the new weights and biases in the big jagged arrays
             newHiddenLayer2Weights[batchIndex] = ArrayUtils.Clone(network.hiddenLayer2Weights);
             newHiddenLayer1Weights[batchIndex] = ArrayUtils.Clone(network.hiddenLayer1Weights);
             newInputLayerWeights[batchIndex] = ArrayUtils.Clone(network.inputLayerWeights);
@@ -51,7 +48,6 @@ internal static class Training
             newHiddenLayer1Biases[batchIndex] = ArrayUtils.Clone(network.hiddenLayer1Biases);
             newInputLayerBiases[batchIndex] = ArrayUtils.Clone(network.inputLayerBiases);
 
-            //Reverts the network back to the old weights and biases
             network.hiddenLayer2Weights = oldHiddenLayer2Weights;
             network.hiddenLayer1Weights = oldHiddenLayer1Weights;
             network.inputLayerWeights = oldInputLayerWeights;

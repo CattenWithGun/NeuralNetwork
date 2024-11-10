@@ -6,7 +6,7 @@ internal class Program
         List<NeuralNetwork> networks = new List<NeuralNetwork>();
         List<string> networkNames = new List<string>();
 
-        //Stores file paths, will change later
+        //TODO: Change to prompt user for file paths
         string labelsFilePath = "/home/catten/Desktop/MNIST_Train_Database/train-labels.idx1-ubyte";
         string imagesFilePath = "/home/catten/Desktop/MNIST_Train_Database/train-images.idx3-ubyte";
         string filePathToStoreIn = "/home/catten/Desktop/network.txt";
@@ -19,7 +19,6 @@ internal class Program
         while(true)
         {
             string command = Prompts.PromptUntilConditionMet("\nEnter: ", "\nNot a command, enter again: ", Checks.IsOption, "");
-            //Finds the command and executes it
             switch(command)
             {
                 case "show":

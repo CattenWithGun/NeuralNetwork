@@ -48,7 +48,6 @@ internal static class BackPropagation
         return errorWithLayer;
     }
 
-    //Left layer could be replaced by a GetLength() of leftLayerWeights later, but that is confusing to me right now
     public static double[,] NewLayerWeights(double[] leftLayer, double[,] leftLayerWeights, double[] rightLayer, double learningRate, double[] errorWithRespectToRightLayer, double[] rightLayerWithRespectToTanh, double[,] inputsOfRightLayerWithRespectToWeights)
     {
         double[,] newLeftLayerWeights = leftLayerWeights;

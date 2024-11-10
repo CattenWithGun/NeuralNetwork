@@ -5,7 +5,6 @@ internal static class Prompts
     public static string PromptUntilConditionMet(string startingMessage, string problemMessage, ConditionMethod conditionMethod, params object[] args)
     {
         Console.Write(startingMessage);
-        //If the input is null, default to exiting
         string option = Console.ReadLine() ?? "exit";
         if (option == "exit") return "exit";
         args[0] = option;

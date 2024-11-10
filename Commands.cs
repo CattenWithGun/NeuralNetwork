@@ -18,7 +18,6 @@ internal static class Commands
 
     public static void Train(NeuralNetwork network, string labelsFilePath, string imagesFilePath)
     {
-        //Get the learning rate
         string learningRateString = Prompts.SamePromptUntilConditionMet("Enter the learning rate: ", Checks.IsDouble, "");
         if(learningRateString == "exit") return;
         double learningRate = Convert.ToDouble(learningRateString);
@@ -143,7 +142,6 @@ internal static class Commands
             string name = Prompts.PromptUntilConditionMet("Enter a name for the network: ", "Name length needs to be 1-20 characters and not already used\nEnter again: ", Checks.IsValidNetworkName, "", networkNames);
             if(name == "exit") return;
 
-            //Creates a randomized network with the name
             NeuralNetwork network = new NeuralNetwork(name);
 
             networks.Add(network);
@@ -154,7 +152,6 @@ internal static class Commands
 
     public static void Delete(List<NeuralNetwork> networks, List<string> networkNames, NeuralNetwork network)
     {
-        //Find the network in the list and delete it
         for(int i = 0; i < networks.Count; i++)
         {
             if(networks[i].name == network.name)

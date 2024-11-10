@@ -16,7 +16,6 @@ internal static class Checks
     public static bool IsOption(params object[] args)
     {
         string option = args[0] as string ?? throw new NullReferenceException();
-        //Goes through the list of commands, and if the option is in there, return that it is a command
         string[] commands = { "show", "train", "test", "error", "store", "make", "delete", "peek", "clear", "help" };
         for(int i = 0; i < commands.Length; i++)
         {

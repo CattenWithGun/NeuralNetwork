@@ -24,7 +24,6 @@ internal static class MNISTFileHandler
 
     public static byte[,,] GetImages(string pathToImageFile)
     {
-        //Gets data in the image file
         byte[] imageFile = File.ReadAllBytes(pathToImageFile);
 
         //Finds the number of images
@@ -203,22 +202,21 @@ internal static class MNISTFileHandler
         return result;
     }
 
-    //Gets the expectedValues array with a label
     public static double[] LabelToExpectedValues(byte label)
     {
         double[,] expectedValues =
         {
-    {1,0,0,0,0,0,0,0,0,0},
-    {0,1,0,0,0,0,0,0,0,0},
-    {0,0,1,0,0,0,0,0,0,0},
-    {0,0,0,1,0,0,0,0,0,0},
-    {0,0,0,0,1,0,0,0,0,0},
-    {0,0,0,0,0,1,0,0,0,0},
-    {0,0,0,0,0,0,1,0,0,0},
-    {0,0,0,0,0,0,0,1,0,0},
-    {0,0,0,0,0,0,0,0,1,0},
-    {0,0,0,0,0,0,0,0,0,1},
-  };
+            {1,0,0,0,0,0,0,0,0,0},
+            {0,1,0,0,0,0,0,0,0,0},
+            {0,0,1,0,0,0,0,0,0,0},
+            {0,0,0,1,0,0,0,0,0,0},
+            {0,0,0,0,1,0,0,0,0,0},
+            {0,0,0,0,0,1,0,0,0,0},
+            {0,0,0,0,0,0,1,0,0,0},
+            {0,0,0,0,0,0,0,1,0,0},
+            {0,0,0,0,0,0,0,0,1,0},
+            {0,0,0,0,0,0,0,0,0,1},
+        };
         return GetRow<double>(expectedValues, Convert.ToInt32(label));
     }
 }
