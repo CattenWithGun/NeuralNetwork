@@ -1,9 +1,4 @@
-﻿using Actions;
-using ErrorChecks;
-using NeuralNetworking;
-using UserPrompts;
-
-public class Program
+internal class Program
 {
     public static void Main()
     {
